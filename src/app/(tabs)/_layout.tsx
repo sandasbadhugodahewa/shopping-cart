@@ -1,5 +1,6 @@
+import { useAuthStore } from "@/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import { ColorValue } from "react-native";
 
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -13,6 +14,14 @@ function TabIcon({name, color, focused, size} :
 
 
 export default function TabLayout() {
+
+  const user = useAuthStore((state) => state.user);
+
+  if(user == null){
+    return <Redirect href="/login"/>
+  }
+
+
   return (
     <Tabs
       screenOptions={{
