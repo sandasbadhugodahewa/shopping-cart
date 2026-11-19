@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { User } from "../types";
 
 const mockUsers: User[] = [
-    { name: "Sandas", email: "lakshan@app.com", password: "1234" }
+    { name: "Lakshan", email: "lakshan@app.com", password: "1234" }
 ];
 
 type AuthState = {

@@ -4,6 +4,10 @@ import { create } from "zustand";
 type CartState = {
     items: CartItem[];
     addToCart: (product: Product, quantity: number) => void;
+    increase: (productId: number) => void;
+    decrease: (productId: number) => void;
+    remove: (productId: number) => void;
+    clearCart: () => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -26,4 +30,34 @@ export const useCartStore = create<CartState>((set, get) => ({
         });
         set({ items: updated });
     },
+
+    increase: (productId) => {
+        const updated = get().items.map((item) => {
+            if (item.product.id === productId) {
+                return { product: item.product, quantity: item.quantity + 1 };
+            }
+            return item;
+        })
+        set({ items: updated });
+    },
+
+    decrease: (productId) => {
+        const updated = get().items.map((item) => {
+            if (item.product.id === productId && item.quantity > 1) {
+                return { product: item.product, quantity: item.quantity - 1 };
+            }
+            return item;
+        })
+        set({ items: updated });
+    },
+
+    remove: (productId) => {
+        const updated = get().items.filter((item) => item.product.id !== productId);
+        set({ items: updated });
+    },
+
+    clearCart: () => {
+        set({ items: [] });
+    }
+
 }));

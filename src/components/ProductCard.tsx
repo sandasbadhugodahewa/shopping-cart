@@ -1,7 +1,7 @@
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types";
-import { formatPrice } from "@/util/format";
+import { formatPrice } from "@/utils/format";
 import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import ProductImage from "./ProductImage";
