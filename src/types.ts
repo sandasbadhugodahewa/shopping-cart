@@ -16,3 +16,8 @@ export type Product = {
     color: string;
     description: string;
 }
+
+export type CartItem = {
+    product: Product;
+    quantity: number;
+}
